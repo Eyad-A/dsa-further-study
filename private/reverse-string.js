@@ -1,3 +1,4 @@
+// Solution 1
 function reverseStr(str) {
     let newStr = "";
     for (let i = str.length - 1; i >= 0; i--) {
@@ -6,5 +7,7 @@ function reverseStr(str) {
     return newStr;
 } 
 
-// Reverse a string 
-// reverseStr("hello"); // "olleh" 
+// Solution 2
+function reverse(str){
+    return str.split("").reverse().join("");
+}

@@ -25,11 +25,11 @@ function sortByParity(nums) {
   
   while (left < right) {
     
-    while (nums[left] % 2 == 0 && left < right) {
+    while (nums[left] % 2 == 0) {
       left++;
     }
     
-    while (nums[right] % 2 == 1 && left < right) {
+    while (nums[right] % 2 == 1) {
       right--;
     }
     
