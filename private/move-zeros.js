@@ -38,6 +38,17 @@ function moveZeros(nums) {
 
 }
 
+// 2. In-place, another method
+function moveZeros(nums) {
+  for (let i = nums.length-1; i >= 0; i--) {
+    if (nums[i] === 0) {
+      nums.push(0);
+      nums.splice(i, 1);
+    }
+  }
+  return nums;
+}
+
 
 // Given an integer array nums, move all 0's to the end of it 
 // while maintaining the relative order of the non-zero elements. 
