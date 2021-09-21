@@ -1,3 +1,22 @@
+// Two pass 
+function twoSums(nums, target) {
+  let map = {};
+
+  for (let i = 0; i < nums.length; i++) {
+    map[nums[i]] = i;
+  }
+
+  for (let i = 0; i < nums.length; i++) {
+    let difference = target - nums[i];
+    let found = map[difference];
+    if (found !== undefined && found !== i) return [i, found];
+  }
+
+  return [0,0];
+}
+
+
+// One pass
 function sum(nums, target) {
   const map = {};
 
