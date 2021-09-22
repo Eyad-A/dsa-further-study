@@ -3,7 +3,12 @@
 // Input: s = "hello world"
 // Output: "olleh dlrow"
 
-// Solution 1
+// Solution 1, built in methods
+var reverseWords = function(s) {
+  return s.split(' ').map(w => w.split('').reverse().join('')).join(' ');
+};
+
+// Solution 2, using new string (STACK)
 function reverse(str) {
   let res = '';
   let word = '';
@@ -19,7 +24,7 @@ function reverse(str) {
 }
 
 
-// Solution 2
+// Solution 3, in place (TWO POINTERS)
 let reverse = (start, end, array) => {
   while(start < end) {
       let temp = array[start];
