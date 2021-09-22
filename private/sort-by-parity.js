@@ -44,9 +44,34 @@ function sortByParity(nums) {
   }
   
   return nums;
-  
+
 }
 
+// 3. In place, another way
+function sortByParity(nums) {
+  let left = 0;
+  let right = nums.length - 1;
+  while (left < right) {
+    if (nums[left] % 2 === 0 && nums[right] % 2 === 0) {
+      left++;
+    }
+    if (nums[left] % 2 === 0 && nums[right] % 2 === 1) {
+      left++;
+      right--;
+    }
+    if (nums[left] % 2 === 1 && nums[right] % 2 === 0) {
+      let temp = nums[right];
+      nums[right] = nums[left];
+      nums[left] = temp;
+      left++;
+      right--;
+    }
+    if (nums[left] % 2 === 1 && nums[right] % 2 === 1) {
+      right--;
+    }
+  }
+  return nums;
+}
 
 // Given an integer array nums, move all the even integers at the beginning of 
 // the array followed by all the odd integers.
