@@ -18,58 +18,131 @@ class LinkedList {
     for (let val of vals) this.push(val);
   }
 
+  /** _get(idx): get node at idx */
+
+  _get(idx) {
+    let current = this.head;
+    let count = 0;
+    while (current !== null && count != idx) {
+      count += 1;
+      current = current.next;
+    }
+    return current;
+  }
+
   /** push(val): add new value to end of list. */
 
   push(val) {
-
+    let newNode = new Node(val);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+    this.length += 1;    
   }
 
   /** unshift(val): add new value to start of list. */
 
   unshift(val) {
-
+    let newNode = new Node(val);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length += 1;
   }
 
   /** pop(): return & remove last item. */
 
   pop() {
-
+    return this.removeAt(this.length - 1);
   }
 
   /** shift(): return & remove first item. */
 
   shift() {
-
+    return this.removeAt(0);
   }
 
   /** getAt(idx): get val at idx. */
 
   getAt(idx) {
-
+    if (idx >= this.length || idx < 0) {
+      throw new Error("Invalid index");
+    }
+    return this._get(idx).val;
   }
 
   /** setAt(idx, val): set val at idx to val */
 
   setAt(idx, val) {
-
+    if (idx >= this.length || idx < 0) {
+      throw new Error("Invalid index");
+    }
+    let found = this._get(idx);
+    found.val = val;
   }
 
   /** insertAt(idx, val): add node w/val before idx. */
 
   insertAt(idx, val) {
+    if (idx === 0) return this.unshift(val);
+    if (idx === this.length) return this.push(val);
 
+    let prev = this._get(idx - 1);
+    let newNode = new Node(val);
+    newNode.next = prev.next;
+    prev.next = newNode;
+    this.length += 1;
   }
 
   /** removeAt(idx): return & remove item at idx, */
 
   removeAt(idx) {
+    // edgecase: remove head 
+    if (idx === 0) {
+      let val = this.head.val;
+      this.head = this.head.next;
+      this.length -= 1;
+      if (this.length < 2) this.tail = this.head;
+      return val;
+    }
+
+    let prev = this._get(idx - 1);
+
+    // edgecase: remove tail    
+    if (idx === this.length - 1) {
+      let val = prev.next.val;
+      prev.next = null;
+      this.tail = prev;
+      this.length -= 1;
+      return val;
+    }
+
+    // remove from the middle
+    let val = prev.next.val;
+    prev.next = prev.next.next;
+    this.length -= 1;
+    return val;
 
   }
 
   /** average(): return an average of all values in the list */
 
   average() {
-    
+    let total = 0;
+    let current = this.head;
+    while (current) {
+      total += current.val;
+      current = current.next;
+    }
+    return total / this.length;
   }
 }
 
