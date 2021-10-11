@@ -17,6 +17,15 @@ class LinkedList {
           currentNode = currentNode.next;
       }
   }
+  traverseEveryOther() {
+    let currentNode = this.head;
+    let count = 0;
+    while (currentNode) {
+      if (count % 2 === 0) console.log(currentNode.val);
+      currentNode = currentNode.next;
+      count++;
+    }
+  }
   find(val) {
       let currentNode = this.head;
       while (currentNode) {
