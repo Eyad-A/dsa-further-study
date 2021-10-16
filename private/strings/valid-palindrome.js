@@ -32,3 +32,52 @@ function isPalindrome(str) {
   } 
   return true;
 }
+
+// Problem 2:
+/**
+ * Given a string, return whether it is a palindrome
+ * hannah
+ *   ^^
+ * left pointer
+ * right pointer
+ * while left < right
+ * if left = right
+ *  left++ right--
+ * if left != right
+ *  return false
+ *  return true
+ */
+
+function isPalindrome(str) {
+  let left = 0;
+  let right = str.length - 1;
+  while (left < right) {
+    if (str[left] !== str[right]) {
+      return false;
+    }
+    left++;
+    right--;
+  }
+  return true;
+}
+
+//hannah => anna => nn
+function isPalindromeRecursive(str) {
+  if (str.length < 2) return true;
+
+  let left = 0;
+  let right = str.length - 1;
+  if (str[left] !== str[right]) {
+    return false;
+  } else {
+    // "hello" (1, 4) => "ell"
+    // str = str.slice(1, str.length-2);
+    let result = "";
+    for (let i = 1; i < str.length - 1; i++) {
+      result += str[i];
+    }
+    return isPalindromeRecursive(result);
+  }
+}
+
+console.log(isPalindromeRecursive("hannah"));
